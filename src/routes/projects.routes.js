@@ -2,17 +2,19 @@ import { Router } from "express";
 import { getProjects, createProject, updateProject, deleteProject, getOneProject } from "../controllers/projects.controller.js";
 
 const router = new Router();
+const endpoint = '/api/v1/projects';
+
 
 router.get("/", getProjects);
 
-router.get("/api/v1/projects", getProjects);
+router.get(`${endpoint}`, getProjects);
 
-router.post("/api/v1/projects", createProject);
+router.post(`${endpoint}`, createProject);
 
-router.get("/api/v1/projects/:id", getOneProject);
+router.get(`${endpoint}/:id`, getOneProject);
 
-router.put("/api/v1/projects/:id", updateProject);
+router.put(`${endpoint}/:id`, updateProject);
 
-router.delete("/api/v1/projects/:id", deleteProject);
+router.delete(`${endpoint}/:id`, deleteProject);
 
 export default router;
