@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getProjects, createProject } from "../controllers/projects.controller.js";
+import { getProjects, createProject, updateProject, deleteProject, getOneProject } from "../controllers/projects.controller.js";
 
 const router = new Router();
 
@@ -9,10 +9,10 @@ router.get("/api/v1/projects", getProjects);
 
 router.post("/api/v1/projects", createProject);
 
-router.get("/api/v1/projects/:id");
+router.get("/api/v1/projects/:id", getOneProject);
 
-router.put("/api/v1/projects/:id");
+router.put("/api/v1/projects/:id", updateProject);
 
-router.delete("/api/v1/projects/:id");
+router.delete("/api/v1/projects/:id", deleteProject);
 
 export default router;
