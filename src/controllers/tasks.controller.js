@@ -18,14 +18,14 @@ export const createTask = async (req, res) => {
     const newTask = await Task.create({
       taskName,
       taskDone: false,
-      projectId
+      projectId,
     });
 
     res.json(newTask);
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      message: "Something goes wrong"
+      message: "Something goes wrong",
     });
   }
 };
@@ -83,6 +83,35 @@ export const updateTask = async (req, res) => {
           taskName,
           taskDone,
           projectId,
+        });
+      });
+    }
+    return res.json({
+      message: "Task updated successfully",
+      data: tasks,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      message: "Something goes wrong",
+    });
+  }
+};
+
+export const updateTaskStatus = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { taskDone } = req.body;
+    const tasks = await Task.findAll({
+      attributes: ["id", "taskName", "taskDone", "projectId"],
+      where: {
+        id,
+      },
+    });
+    if (tasks.length > 0) {
+      tasks.forEach(async (task) => {
+        await task.update({
+          taskDone,
         });
       });
     }
