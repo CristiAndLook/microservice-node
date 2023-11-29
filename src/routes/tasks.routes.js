@@ -4,8 +4,6 @@ import { getTasks, createTask, updateTask, deleteTask, getOneTask } from "../con
 const router = new Router();
 const endpoint = "/api/v1/tasks";
 
-router.get("/");
-
 router.get(`${endpoint}`, getTasks);
 
 router.post(`${endpoint}`, createTask);

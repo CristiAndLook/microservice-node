@@ -4,9 +4,6 @@ import { getProjects, createProject, updateProject, deleteProject, getOneProject
 const router = new Router();
 const endpoint = '/api/v1/projects';
 
-
-router.get("/", getProjects);
-
 router.get(`${endpoint}`, getProjects);
 
 router.post(`${endpoint}`, createProject);
